@@ -1,4 +1,7 @@
+package basic;
+
 public class InterruptTest {
+
     public static void main(String[] args) {
         testInterrupt();
     }

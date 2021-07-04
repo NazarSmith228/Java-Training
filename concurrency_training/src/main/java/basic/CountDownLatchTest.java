@@ -1,3 +1,5 @@
+package basic;
+
 import java.util.concurrent.CountDownLatch;
 
 public class CountDownLatchTest {

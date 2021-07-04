@@ -1,8 +1,11 @@
+package basic;
+
 import java.util.concurrent.TimeUnit;
 
 public class WaitNotifyTest {
+
     public static int counter;
-    static final Object monitor = new Object();
+    public static final Object monitor = new Object();
 
     public static void main(String[] args) {
         testSynchronization();

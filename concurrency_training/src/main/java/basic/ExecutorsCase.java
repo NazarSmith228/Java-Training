@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ExecutorsTest {
+public class ExecutorsCase {
 
     public static void main(String[] args) {
         //Run the desired method

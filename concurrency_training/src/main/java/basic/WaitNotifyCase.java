@@ -2,7 +2,7 @@ package basic;
 
 import java.util.concurrent.TimeUnit;
 
-public class WaitNotifyTest {
+public class WaitNotifyCase {
 
     public static int counter;
     public static final Object monitor = new Object();

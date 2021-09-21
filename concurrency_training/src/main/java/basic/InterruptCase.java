@@ -1,6 +1,6 @@
 package basic;
 
-public class InterruptTest {
+public class InterruptCase {
 
     public static void main(String[] args) {
         testInterrupt();

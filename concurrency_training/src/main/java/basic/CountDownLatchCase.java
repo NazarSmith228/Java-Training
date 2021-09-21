@@ -2,7 +2,7 @@ package basic;
 
 import java.util.concurrent.CountDownLatch;
 
-public class CountDownLatchTest {
+public class CountDownLatchCase {
     static int counter = 0;
 
     public static void main(String[] args) {

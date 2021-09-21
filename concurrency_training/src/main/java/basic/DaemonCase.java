@@ -2,7 +2,7 @@ package basic;
 
 import java.util.concurrent.TimeUnit;
 
-public class DaemonTest {
+public class DaemonCase {
     public static void main(String[] args) {
         testDaemon();
     }

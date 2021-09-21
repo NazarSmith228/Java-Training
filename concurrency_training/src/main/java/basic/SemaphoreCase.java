@@ -3,7 +3,7 @@ package basic;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-public class SemaphoreTest {
+public class SemaphoreCase {
 
     public static Semaphore semaphore = new Semaphore(0);
     public static int counter = 0;

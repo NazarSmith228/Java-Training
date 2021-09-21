@@ -3,7 +3,7 @@ package basic;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class LockTest {
+public class LockCase {
 
     static ReentrantReadWriteLock lock = new ReentrantReadWriteLock(true);
     static ReentrantReadWriteLock.ReadLock readLock = lock.readLock();

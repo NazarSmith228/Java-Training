@@ -1,6 +1,6 @@
 package basic;
 
-public class JoinTest {
+public class JoinCase {
 
     public static void main(String[] args) {
         testJoin();

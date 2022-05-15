@@ -1,9 +1,6 @@
 package org.java.training.data.structures.impl;
 
 import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Objects;
@@ -14,13 +11,10 @@ public class HashTable<T> {
     Node<T>[] table;
     int size;
 
-    @Getter
-    @Setter
-    @Accessors(fluent = true)
     @FieldDefaults(level = AccessLevel.PRIVATE)
     private static class Node<T> {
 
-        T value;
+        final T value;
         Node<T> next;
 
         public Node(T value) {
@@ -47,16 +41,16 @@ public class HashTable<T> {
             table[index] = newNode;
         } else {
             Node<T> current = table[index];
-            if (current.value().equals(element)) {
+            if (current.value.equals(element)) {
                 return false;
             }
-            while (current.next() != null) {
-                current = current.next();
-                if (current.value().equals(element)) {
+            while (current.next != null) {
+                current = current.next;
+                if (current.value.equals(element)) {
                     return false;
                 }
             }
-            current.next(newNode);
+            current.next = newNode;
         }
         return true;
     }
@@ -87,11 +81,11 @@ public class HashTable<T> {
         for (int i = 0; i < table.length; i++) {
             Node<T> current = table[i];
             if (current != null) {
-                System.out.print(i + ": " + current.value());
-                while (current.next() != null) {
+                System.out.print(i + ": " + current.value);
+                while (current.next != null) {
                     System.out.print("->");
-                    current = current.next();
-                    System.out.print(current.value());
+                    current = current.next;
+                    System.out.print(current.value);
                 }
                 System.out.println();
             }

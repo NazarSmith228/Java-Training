@@ -1,13 +1,19 @@
-package org.java.training.generics.impl;
+package org.java.training.core.impl;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.UtilityClass;
 
 import java.util.*;
 
+/**
+ * Multi-type container that holds maximum values.
+ * <p>
+ * It stores up to one value per type, and it is type-safe.
+ */
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class HeterogeneousMaxHolder {
-    Map<Class<?>, Object> holder = new LinkedHashMap<>();
+    Map<Class<?>, Object> holder = new HashMap<>();
 
     @SuppressWarnings("unchecked")
     public <V extends Comparable<? super V>> V getMax(Class<V> clazz) {
@@ -23,5 +29,23 @@ public class HeterogeneousMaxHolder {
 
     private <V extends Comparable<? super V>> V computeMax(V oldVal, V newVal) {
         return oldVal.compareTo(newVal) > 0 ? oldVal : newVal;
+    }
+
+    @UtilityClass
+    public static class Demo {
+
+        public void execute() {
+            var maxHolder = new HeterogeneousMaxHolder();
+
+            maxHolder.put(Integer.class, 3);
+            maxHolder.put(Integer.class, 1);
+            maxHolder.put(Integer.class, 2);
+            System.out.println(maxHolder.getMax(Integer.class)); //3
+
+            maxHolder.put(String.class, "A");
+            maxHolder.put(String.class, "c");
+            maxHolder.put(String.class, "a");
+            System.out.println(maxHolder.getMax(String.class)); // c
+        }
     }
 }

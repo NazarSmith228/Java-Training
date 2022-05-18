@@ -91,6 +91,11 @@ public class BinaryTree<T extends Comparable<? super T>> {
         }
     }
 
+    //todo: implement delete method with re-balancing
+    public boolean delete(T value) {
+        return false;
+    }
+
     public int size() {
         return size;
     }

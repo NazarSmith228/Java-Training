@@ -1,18 +1,15 @@
-package org.java.training.model.factory;
+package org.java.training.model.util;
 
 import lombok.experimental.UtilityClass;
 import org.java.training.model.Location;
 import org.java.training.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @UtilityClass
-public class DataFactory {
+public class Users {
 
-    public List<User> createTestData() {
-        List<User> users = new ArrayList<>();
-
+    public List<User> createUsers() {
         Location l1 = createLocation("Ukraine", "Lviv", "Str. 1");
         Location l2 = createLocation("Ukraine", "Kyiv", "Str. 3");
         Location l3 = createLocation("Poland", "Warsaw", "Str. 67");
@@ -30,17 +27,7 @@ public class DataFactory {
         User u8 = createUser(24, 97, "Fedor", l3);
         User u9 = createUser(19, 156, "Fedor", l1);
 
-        users.add(u1);
-        users.add(u2);
-        users.add(u3);
-        users.add(u4);
-        users.add(u5);
-        users.add(u6);
-        users.add(u7);
-        users.add(u8);
-        users.add(u9);
-
-        return users;
+        return List.of(u1, u2, u3, u4, u5, u6, u7, u8, u9);
     }
 
     private Location createLocation(String country, String city, String address) {

@@ -2,10 +2,15 @@ package org.java.training.data.structures.impl;
 
 import lombok.experimental.UtilityClass;
 
+import static org.apache.commons.lang3.StringUtils.SPACE;
+
+/**
+ * Utility that prints formatted an array of strings of unspecified length.
+ * <p>>
+ * Content is divided into {@code n} columns with minimum distance between columns of 4 spaces.
+ */
 @UtilityClass
 public class ArrayFormatter {
-
-    private final String WHITESPACE = " ";
 
     public void printFormatted(String[] elements, int columns) {
         int numberOfElements = elements.length;
@@ -29,12 +34,18 @@ public class ArrayFormatter {
                 if (elements[i].length() == elements[maxIndexes[j]].length()) {
                     repeatNumber = minDist;
                 }
-                System.out.print(elements[i] + WHITESPACE.repeat(repeatNumber));
+                System.out.print(elements[i] + SPACE.repeat(repeatNumber));
                 j++;
                 i++;
             }
             System.out.println();
         }
+    }
+
+    public static void demo() {
+        String[] input = {"1", "2", "3", "x", "5", "6", "a", "porosiatko", "c",
+                "fdsdfsdfsdfs", "sdfsdq", "12", "13", "14", "15", "16"};
+        printFormatted(input, 4);
     }
 }
 

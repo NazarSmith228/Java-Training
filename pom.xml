@@ -10,10 +10,10 @@
 
     <modules>
         <module>concurrency-training</module>
-        <module>stream-training</module>
-        <module>generics-training</module>
-        <module>data-structures-training</module>
+        <module>core-training</module>
         <module>common</module>
+        <module>data-structures-training</module>
+        <module>stream-training</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -2,23 +2,27 @@ package org.java.training.data.structures.impl;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.UtilityClass;
 
 import java.util.Objects;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class HashTable<T> {
+public class HashTable<K, V> {
 
-    Node<T>[] table;
+    Node<K, V>[] table;
     int size;
 
     @FieldDefaults(level = AccessLevel.PRIVATE)
-    private static class Node<T> {
+    private static class Node<K, V> {
 
-        final T value;
-        Node<T> next;
+        final K key;
+        V value;
+        Node<K, V> next;
 
-        public Node(T value) {
+        public Node(K key, V value) {
+            this.key = key;
             this.value = value;
+            this.next = null;
         }
 
     }
@@ -29,30 +33,36 @@ public class HashTable<T> {
         this.table = new Node[capacity];
     }
 
-    public boolean add(T element) {
-        Node<T> newNode = new Node<>(Objects.requireNonNull(element));
+    public V add(K key, V value) {
+        Objects.requireNonNull(key);
+        Objects.requireNonNull(value);
+
+        Node<K, V> newNode = new Node<>(key, value);
         if (table.length - size < 5) {
             resize(size * 2);
         }
 
-        int index = calculateIndex(hash(element));
+        int index = calculateIndex(hash(key));
         if (table[index] == null) {
             size++;
             table[index] = newNode;
         } else {
-            Node<T> current = table[index];
-            if (current.value.equals(element)) {
-                return false;
-            }
-            while (current.next != null) {
-                current = current.next;
-                if (current.value.equals(element)) {
-                    return false;
+            Node<K, V> current = table[index];
+            Node<K, V> p = current;
+            while (p != null) {
+                if (p.key.equals(key)) {
+                    V oldValue = p.value;
+                    p.value = value;
+                    return oldValue;
+                }
+                p = p.next;
+                if (current.next != null) {
+                    current = current.next;
                 }
             }
-            current.next = newNode;
+            current.next = new Node<>(key, value);
         }
-        return true;
+        return value;
     }
 
     private int calculateIndex(int hash) {
@@ -62,9 +72,9 @@ public class HashTable<T> {
 
     @SuppressWarnings("unchecked")
     private void resize(int newSize) {
-        Node<T>[] newTable = new Node[newSize];
+        Node<K, V>[] newTable = new Node[newSize];
         for (int i = 0; i < table.length; i++) {
-            Node<T> current = table[i];
+            Node<K, V> current = table[i];
             if (current != null) {
                 newTable[i] = table[i];
             }
@@ -72,24 +82,42 @@ public class HashTable<T> {
         this.table = newTable;
     }
 
-    private int hash(T element) {
+    private int hash(K key) {
         int h;
-        return (element == null) ? 0 : (h = element.hashCode()) ^ (h >>> 16);
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
     }
 
     public void content() {
-        for (int i = 0; i < table.length; i++) {
-            Node<T> current = table[i];
-            if (current != null) {
-                System.out.print(i + ": " + current.value);
-                while (current.next != null) {
-                    System.out.print("->");
-                    current = current.next;
-                    System.out.print(current.value);
+        for (var node : table) {
+            if (node != null) {
+                System.out.print(node.key + ": " + node.value);
+                while ((node = node.next) != null) {
+                    System.out.print("->" + node.value);
                 }
                 System.out.println();
             }
         }
     }
 
+    @UtilityClass
+    public static class Demo {
+
+        public void execute() {
+            var table = new HashTable<String, Integer>(5) {{
+                add("AaAaAa", 1);
+                add("AaAaBB", 2);
+                add("AaAaAa", 3);
+                add("AaBBAa", 4);
+                add("AaBBBB", 5);
+                add("AAa", 6);
+                add("bbb", 8);
+                add("BBb", 9);
+                add("bBB", 7);
+                add("aaAA", 10);
+                add("cCCc", 11);
+            }};
+
+            table.content();
+        }
+    }
 }

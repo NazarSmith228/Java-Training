@@ -1,8 +1,8 @@
-package org.java.training.model.util;
+package org.java.training.model.users.util;
 
 import lombok.experimental.UtilityClass;
-import org.java.training.model.Location;
-import org.java.training.model.User;
+import org.java.training.model.users.Location;
+import org.java.training.model.users.User;
 
 import java.util.List;
 

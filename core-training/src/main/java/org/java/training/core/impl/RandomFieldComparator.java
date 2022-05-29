@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.UtilityClass;
-import org.java.training.model.User;
-import org.java.training.model.util.Users;
+import org.java.training.model.users.User;
+import org.java.training.model.users.util.Users;
 
 import java.lang.reflect.Field;
 import java.util.*;

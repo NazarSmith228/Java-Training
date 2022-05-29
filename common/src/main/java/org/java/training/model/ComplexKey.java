@@ -1,8 +1,8 @@
 package org.java.training.model;
 
-public record ComplexKey(String country, String city) {
+public record ComplexKey<T, R>(T firstKey, R secondKey) {
 
-    public static ComplexKey of(String country, String city) {
-        return new ComplexKey(country, city);
+    public static <T, R> ComplexKey<T, R> of(T firstKey, R secondKey) {
+        return new ComplexKey<>(firstKey, secondKey);
     }
 }

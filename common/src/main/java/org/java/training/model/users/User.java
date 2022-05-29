@@ -1,4 +1,4 @@
-package org.java.training.model;
+package org.java.training.model.users;
 
 import lombok.Builder;
 

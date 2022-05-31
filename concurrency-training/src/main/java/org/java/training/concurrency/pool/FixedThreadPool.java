@@ -1,4 +1,4 @@
-package org.java.training.concurrency.advanced;
+package org.java.training.concurrency.pool;
 
 import java.util.ArrayList;
 import java.util.List;

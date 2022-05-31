@@ -1,4 +1,4 @@
-package org.java.training.concurrency.advanced;
+package org.java.training.concurrency.pool;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

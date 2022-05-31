@@ -1,4 +1,4 @@
-package org.java.training.concurrency.advanced;
+package org.java.training.concurrency.pool;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;

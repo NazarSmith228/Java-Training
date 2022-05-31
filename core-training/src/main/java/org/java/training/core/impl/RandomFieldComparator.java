@@ -33,7 +33,7 @@ import static org.apache.commons.lang3.ObjectUtils.allNull;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class RandomFieldComparator<T> implements Comparator<T> {
 
-    Class<T> type;
+    Class<? extends T> type;
 
     boolean compareOnlyAccessibleFields;
 
@@ -48,11 +48,11 @@ public class RandomFieldComparator<T> implements Comparator<T> {
         DESCENDING
     }
 
-    public RandomFieldComparator(Class<T> type) {
+    public RandomFieldComparator(Class<? extends T> type) {
         this(type, false, Order.ASCENDING);
     }
 
-    public RandomFieldComparator(Class<T> type, boolean compareOnlyAccessibleFields, Order order) {
+    public RandomFieldComparator(Class<? extends T> type, boolean compareOnlyAccessibleFields, Order order) {
         this.type = type;
         this.compareOnlyAccessibleFields = compareOnlyAccessibleFields;
         this.order = order;

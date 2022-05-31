@@ -1,4 +1,4 @@
-package org.java.training.concurrency.advanced;
+package org.java.training.concurrency.pool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

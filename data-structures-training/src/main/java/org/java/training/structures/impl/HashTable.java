@@ -1,22 +1,32 @@
-package org.java.training.data.structures.impl;
+package org.java.training.structures.impl;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.UtilityClass;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class HashTable<K, V> {
 
+    private static final int DEFAULT_INITIAL_CAPACITY = 16;
+
     Node<K, V>[] table;
+
     int size;
 
     @FieldDefaults(level = AccessLevel.PRIVATE)
-    private static class Node<K, V> {
+    public static class Node<K, V> {
 
+        @Getter
         final K key;
+
+        @Getter
         V value;
+
         Node<K, V> next;
 
         public Node(K key, V value) {
@@ -25,6 +35,10 @@ public class HashTable<K, V> {
             this.next = null;
         }
 
+    }
+
+    public HashTable() {
+        this(DEFAULT_INITIAL_CAPACITY);
     }
 
     @SuppressWarnings("unchecked")
@@ -60,9 +74,13 @@ public class HashTable<K, V> {
                     current = current.next;
                 }
             }
-            current.next = new Node<>(key, value);
+            Objects.requireNonNull(current).next = new Node<>(key, value);
         }
         return value;
+    }
+
+    public List<Node<K, V>> nodes() {
+        return Arrays.stream(table).toList();
     }
 
     private int calculateIndex(int hash) {
@@ -92,7 +110,8 @@ public class HashTable<K, V> {
             if (node != null) {
                 System.out.print(node.key + ": " + node.value);
                 while ((node = node.next) != null) {
-                    System.out.print("->" + node.value);
+                    System.out.print(" -> ");
+                    System.out.print("{" + node.key + ": " + node.value + "}");
                 }
                 System.out.println();
             }

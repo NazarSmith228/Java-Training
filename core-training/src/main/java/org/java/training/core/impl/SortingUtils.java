@@ -2,7 +2,10 @@ package org.java.training.core.impl;
 
 import lombok.experimental.UtilityClass;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 
 @UtilityClass
 public class SortingUtils {
@@ -23,6 +26,21 @@ public class SortingUtils {
             }
             input.set(j + 1, current);
         }
+    }
+
+    public <T, R extends Comparable<? super R>> Comparator<T> comparing(
+            Function<? super T, ? extends R> extractionFunction) {
+        Objects.requireNonNull(extractionFunction);
+        return (t1, t2) -> extractionFunction.apply(t1).compareTo(extractionFunction.apply(t2));
+    }
+
+    public <T, R extends Comparable<? super R>> Comparator<T> comparingAndThen(
+            Comparator<? super T> other, Function<? super T, ? extends R> extractionFunction) {
+        Objects.requireNonNull(other);
+        Objects.requireNonNull(extractionFunction);
+        return (t1, t2) -> other.compare(t1, t2) == 0
+                ? extractionFunction.apply(t1).compareTo(extractionFunction.apply(t2))
+                : other.compare(t1, t2);
     }
 
     private <T extends Comparable<? super T>> void mergeSort(List<T> input, int left, int right) {

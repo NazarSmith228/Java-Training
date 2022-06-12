@@ -1,8 +1,8 @@
-package org.java.training.data.structures;
+package org.java.training.structures;
 
-import org.java.training.data.structures.impl.ArrayFormatter;
-import org.java.training.data.structures.impl.BinaryTree;
-import org.java.training.data.structures.impl.HashTable;
+import org.java.training.structures.impl.ArrayFormatter;
+import org.java.training.structures.impl.BinaryTree;
+import org.java.training.structures.impl.HashTable;
 
 import java.util.Scanner;
 

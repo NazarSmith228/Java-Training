@@ -1,4 +1,4 @@
-package org.java.training.data.structures.impl;
+package org.java.training.structures.impl;
 
 import lombok.AccessLevel;
 import lombok.ToString;
@@ -14,7 +14,7 @@ public class LinkedListUtils {
     @ToString(exclude = "next", includeFieldNames = false)
     private static class Node<T> {
 
-        T value;
+        final T value;
         Node<T> next;
 
         private Node(T value) {

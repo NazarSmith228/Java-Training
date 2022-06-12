@@ -1,4 +1,4 @@
-package org.java.training.data.structures.impl;
+package org.java.training.structures.impl;
 
 import lombok.experimental.UtilityClass;
 

@@ -1,4 +1,4 @@
-package org.java.training.data.structures.impl;
+package org.java.training.structures.impl;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -117,8 +117,8 @@ public class BinaryTree<T extends Comparable<? super T>> {
         }
     }
 
-    public void traverseAscending() {
-        traverseAscending(root, System.out::print);
+    public void traverseAscending(Consumer<T> nodeConsumer) {
+        traverseAscending(root, nodeConsumer);
     }
 
     private void traverseAscending(TreeNode<T> root, Consumer<T> nodeConsumer) {
@@ -192,7 +192,7 @@ public class BinaryTree<T extends Comparable<? super T>> {
             System.out.println("Depth: " + tree.depth());
 
             System.out.print("Traversal: ");
-            tree.traverseAscending();
+            tree.traverseAscending(System.out::println);
 
             System.out.printf("\nContains [%d] : %b\n", 11, tree.contains(11));
             System.out.printf("Contains [%d] : %b\n", 0, tree.contains(0));

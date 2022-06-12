@@ -2,13 +2,18 @@ package org.java.training.concurrency.forkjoin;
 
 import lombok.experimental.UtilityClass;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;
 
 @UtilityClass
 public class ForkJoinPools {
 
-    private final ForkJoinPool POOL = ForkJoinPool.commonPool();
+    private final ForkJoinPool POOL;
+
+    static {
+        POOL = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
+    }
 
     public <T extends Comparable<? super T>> void mergeSort(T[] arr) {
         System.out.println("Input: " + Arrays.toString(arr));
@@ -27,6 +32,8 @@ public class ForkJoinPools {
                     case Integer ignoredInt -> new NumberAccumulator<>((Integer[]) numbers, 0, Integer::sum);
                     case Long ignoredLong -> new NumberAccumulator<>((Long[]) numbers, 0L, Long::sum);
                     case Double ignoredDouble -> new NumberAccumulator<>((Double[]) numbers, 0D, Double::sum);
+                    case BigInteger ignoredBig ->
+                            new NumberAccumulator<>((BigInteger[]) numbers, BigInteger.ZERO, BigInteger::add);
                     case null, default -> throw new IllegalArgumentException();
                 };
 
@@ -34,5 +41,11 @@ public class ForkJoinPools {
         System.out.println("Input array: " + Arrays.toString(numbers));
         Number result = POOL.invoke(accumulator);
         System.out.println("Accumulation result: " + result);
+    }
+
+    public BigInteger findFibonacciNumber(int index) {
+        BigInteger fibonacciNumber = POOL.invoke(FibonacciCounter.of(index));
+        System.out.printf("Fibonacci number on index [%d]: %d", index, fibonacciNumber);
+        return fibonacciNumber;
     }
 }

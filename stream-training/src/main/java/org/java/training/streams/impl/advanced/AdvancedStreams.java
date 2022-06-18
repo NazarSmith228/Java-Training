@@ -42,6 +42,13 @@ public class AdvancedStreams {
                 .sum();
     }
 
+    public <T extends Number> void findFirstPositiveSequence(Collection<T> collection) {
+        collection.stream()
+                .dropWhile(t -> t.intValue() < 0)
+                .takeWhile(t -> t.intValue() > 0)
+                .forEach(t -> System.out.printf("%s|", t.toString()));
+    }
+
     public <T extends Comparable<? super T>> void mergeSortWithStream(T[] input) {
         int length = input.length;
         T[] temp = Arrays.copyOf(input, length);

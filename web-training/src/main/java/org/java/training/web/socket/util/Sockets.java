@@ -1,4 +1,4 @@
-package org.java.training.web.net.util;
+package org.java.training.web.socket.util;
 
 import lombok.Cleanup;
 import lombok.SneakyThrows;

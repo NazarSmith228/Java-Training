@@ -1,4 +1,4 @@
-package org.java.training.web.net.exception;
+package org.java.training.web.socket.server.exception;
 
 import lombok.AccessLevel;
 import lombok.Getter;

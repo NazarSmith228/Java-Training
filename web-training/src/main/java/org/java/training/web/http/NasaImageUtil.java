@@ -31,7 +31,7 @@ import static java.util.Comparator.comparing;
 
 @UtilityClass
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class NasaImageHandler {
+public class NasaImageUtil {
 
     String MARS_PHOTOS_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=14&api_key=DEMO_KEY";
     String IMAGE_SOURCE_TAG = "img_src";
@@ -70,7 +70,7 @@ public class NasaImageHandler {
 
         jsonContent.findValues(IMAGE_SOURCE_TAG).stream()
                 .map(JsonNode::asText)
-                .map(NasaImageHandler::makePair)
+                .map(NasaImageUtil::makePair)
                 .max(comparing(Pair::getRight))
                 .ifPresent(pair -> {
                     System.out.println("Image url: " + pair.getLeft());

@@ -1,9 +1,9 @@
-package org.java.training.web.net;
+package org.java.training.web.socket.server;
 
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 import org.java.training.web.common.HttpStatusCode;
-import org.java.training.web.net.exception.SocketException;
+import org.java.training.web.socket.server.exception.SocketException;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -3,6 +3,7 @@ package org.java.training.streams.impl.collectors;
 import lombok.experimental.UtilityClass;
 import org.java.training.structures.impl.BinaryTree;
 import org.java.training.structures.impl.HashTable;
+import org.java.training.structures.impl.SimpleHashMap;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +25,20 @@ public class CustomCollectors {
                 (tab1, tab2) -> {
                     tab2.nodes().forEach(node -> tab1.add(node.getKey(), node.getValue()));
                     return tab1;
+                }
+        );
+    }
+
+    public <T, K, V> Collector<T, ?, SimpleHashMap<K, V>> toSimpleHashMap(Function<? super T, ? extends K> keyMapper,
+                                                                          Function<? super T, ? extends V> valueMapper) {
+        Objects.requireNonNull(keyMapper);
+        Objects.requireNonNull(valueMapper);
+        return Collector.of(
+                SimpleHashMap::new,
+                (map, el) -> map.put(keyMapper.apply(el), valueMapper.apply(el)),
+                (m1, m2) -> {
+                    m1.putAll(m2);
+                    return m1;
                 }
         );
     }
@@ -70,8 +85,7 @@ public class CustomCollectors {
         return Collector.of(
                 () -> 0,
                 (currHash, el) -> currHash += el.hashCode(),
-                Integer::sum,
-                Function.identity()
+                Integer::sum
         );
     }
 }

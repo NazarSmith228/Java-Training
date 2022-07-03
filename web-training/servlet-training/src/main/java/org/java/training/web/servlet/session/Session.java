@@ -1,4 +1,4 @@
-package servlet.session;
+package org.java.training.web.servlet.session;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

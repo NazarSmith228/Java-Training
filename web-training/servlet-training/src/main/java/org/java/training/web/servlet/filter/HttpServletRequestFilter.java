@@ -1,15 +1,15 @@
-package servlet.filter;
+package org.java.training.web.servlet.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import servlet.request.MutableHttpServletRequest;
+import org.java.training.web.servlet.request.MutableHttpServletRequest;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static servlet.constant.ServletConstants.CUSTOM_SESSION_HEADER;
+import static org.java.training.web.servlet.constant.ServletConstants.CUSTOM_SESSION_HEADER;
 
 @WebFilter(servletNames = {"EveningServlet"}, dispatcherTypes = DispatcherType.REQUEST)
 @Slf4j

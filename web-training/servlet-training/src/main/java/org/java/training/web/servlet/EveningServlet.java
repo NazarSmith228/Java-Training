@@ -1,4 +1,4 @@
-package servlet;
+package org.java.training.web.servlet;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -7,13 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import servlet.session.Session;
-import servlet.session.SessionProvider;
+import org.java.training.web.servlet.session.Session;
+import org.java.training.web.servlet.session.SessionProvider;
 
 import java.io.PrintWriter;
 import java.util.Optional;
 
-import static servlet.constant.ServletConstants.*;
+import static org.java.training.web.servlet.constant.ServletConstants.*;
 
 @WebServlet(name = "EveningServlet", value = "/evening")
 @Slf4j

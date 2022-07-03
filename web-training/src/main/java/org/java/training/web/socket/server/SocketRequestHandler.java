@@ -5,7 +5,6 @@ import lombok.SneakyThrows;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpGet;
 import org.java.training.web.common.HttpStatusCode;
-import org.java.training.web.socket.server.constant.SocketServerConstants;
 import org.java.training.web.socket.server.exception.SocketException;
 
 import java.io.BufferedReader;
@@ -18,6 +17,7 @@ import java.util.Set;
 import java.util.function.UnaryOperator;
 
 import static org.apache.commons.lang3.StringUtils.*;
+import static org.java.training.web.socket.constant.SocketConstants.*;
 
 @NoArgsConstructor(staticName = "newInstance")
 public class SocketRequestHandler {
@@ -92,7 +92,7 @@ public class SocketRequestHandler {
     }
 
     private void setAndValidateRequestLine(String requestLine) {
-        if (requestLine.isBlank() || !requestLine.contains(SocketServerConstants.HTTP_VERSION)) {
+        if (requestLine.isBlank() || !requestLine.contains(HTTP_VERSION)) {
             throw new IllegalArgumentException("Invalid request line: " + requestLine);
         }
         String httpMethod = requestLine.substring(0, 3);
@@ -106,7 +106,7 @@ public class SocketRequestHandler {
     private void parseAndValidateHeaders(BufferedReader reader) {
         String header;
         while (!isEmpty(header = reader.readLine())) {
-            int idx = header.indexOf(SocketServerConstants.SEMICOLON);
+            int idx = header.indexOf(SEMICOLON);
             if (idx == -1) {
                 throw new IllegalArgumentException("Invalid header: " + header);
             } else {
@@ -123,14 +123,14 @@ public class SocketRequestHandler {
 
     private String extractRequestUrl() {
         int spaceIdx = requestLine.indexOf(SPACE);
-        int versionIdx = requestLine.indexOf(SocketServerConstants.HTTP_VERSION);
+        int versionIdx = requestLine.indexOf(HTTP_VERSION);
         String url = requestLine.substring(spaceIdx + 1, versionIdx).stripTrailing();
 
-        return url.startsWith(SocketServerConstants.BACKSLASH) ? url : SocketServerConstants.BACKSLASH.concat(url);
+        return url.startsWith(BACKSLASH) ? url : BACKSLASH.concat(url);
     }
 
     private String parseEndpoint(String url) {
-        StringBuilder endpointBuilder = new StringBuilder(EMPTY);
+        var endpointBuilder = new StringBuilder(EMPTY);
         int idx = 0;
         while (idx < url.length() &&
                 (Character.isLetter(url.charAt(idx)) || url.charAt(idx) == '/')) {
@@ -147,10 +147,10 @@ public class SocketRequestHandler {
     private static class EndpointsHandler {
 
         private static String responseToHello(String url) {
-            int queryIdx = url.indexOf(SocketServerConstants.QUERY);
+            int queryIdx = url.indexOf(QUESTION_SIGN);
             if (queryIdx != -1) {
                 String queryParam = url.substring(queryIdx + 1);
-                String name = queryParam.split(SocketServerConstants.EQUAL_SIGN)[1];
+                String name = queryParam.split(EQUAL_SIGN)[1];
                 return String.format("Hello, %s!", name);
             } else {
                 return "Hello, Anonymous";

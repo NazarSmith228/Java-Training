@@ -1,4 +1,4 @@
-package servlet.listener;
+package org.java.training.web.servlet.listener;
 
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.HttpSession;

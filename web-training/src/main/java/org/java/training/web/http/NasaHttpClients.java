@@ -2,10 +2,8 @@ package org.java.training.web.http;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AccessLevel;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
-import lombok.experimental.FieldDefaults;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -30,11 +28,10 @@ import java.net.http.HttpResponse;
 import static java.util.Comparator.comparing;
 
 @UtilityClass
-@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class NasaImageUtil {
+public class NasaHttpClients {
 
-    String MARS_PHOTOS_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=14&api_key=DEMO_KEY";
-    String IMAGE_SOURCE_TAG = "img_src";
+    private final String MARS_PHOTOS_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=14&api_key=DEMO_KEY";
+    private final String IMAGE_SOURCE_TAG = "img_src";
 
     @SneakyThrows
     public void getAllImageLocations() { //UrlConnection
@@ -70,7 +67,7 @@ public class NasaImageUtil {
 
         jsonContent.findValues(IMAGE_SOURCE_TAG).stream()
                 .map(JsonNode::asText)
-                .map(NasaImageUtil::makePair)
+                .map(NasaHttpClients::makePair)
                 .max(comparing(Pair::getRight))
                 .ifPresent(pair -> {
                     System.out.println("Image url: " + pair.getLeft());

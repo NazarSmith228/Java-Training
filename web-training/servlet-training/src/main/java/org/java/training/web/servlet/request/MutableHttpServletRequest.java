@@ -1,4 +1,4 @@
-package servlet.request;
+package org.java.training.web.servlet.request;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;

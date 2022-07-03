@@ -1,4 +1,4 @@
-package servlet.session;
+package org.java.training.web.servlet.session;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
-import static servlet.constant.ServletConstants.COOKIE_HEADER;
-import static servlet.constant.ServletConstants.SESSIONID_PARAM;
+import static org.java.training.web.servlet.constant.ServletConstants.COOKIE_HEADER;
+import static org.java.training.web.servlet.constant.ServletConstants.SESSIONID_PARAM;
 
 @Slf4j
 public class SessionProvider {

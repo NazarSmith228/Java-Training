@@ -1,4 +1,4 @@
-package org.java.training.concurrency.basic;
+package org.java.training.concurrency.synchronizers;
 
 public class JoinCase {
 

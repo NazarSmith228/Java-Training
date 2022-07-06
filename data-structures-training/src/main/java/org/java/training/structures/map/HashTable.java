@@ -1,9 +1,8 @@
-package org.java.training.structures.impl;
+package org.java.training.structures.map;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
-import lombok.experimental.UtilityClass;
 
 import java.util.Arrays;
 import java.util.List;
@@ -115,28 +114,6 @@ public class HashTable<K, V> {
                 }
                 System.out.println();
             }
-        }
-    }
-
-    @UtilityClass
-    public static class Demo {
-
-        public void execute() {
-            var table = new HashTable<String, Integer>(5) {{
-                add("AaAaAa", 1);
-                add("AaAaBB", 2);
-                add("AaAaAa", 3);
-                add("AaBBAa", 4);
-                add("AaBBBB", 5);
-                add("AAa", 6);
-                add("bbb", 8);
-                add("BBb", 9);
-                add("bBB", 7);
-                add("aaAA", 10);
-                add("cCCc", 11);
-            }};
-
-            table.content();
         }
     }
 }

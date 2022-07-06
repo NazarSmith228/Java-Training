@@ -1,4 +1,4 @@
-package org.java.training.structures.impl;
+package org.java.training.structures.map;
 
 import lombok.AccessLevel;
 import lombok.Data;

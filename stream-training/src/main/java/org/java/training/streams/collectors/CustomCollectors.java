@@ -1,9 +1,9 @@
-package org.java.training.streams.impl.collectors;
+package org.java.training.streams.collectors;
 
 import lombok.experimental.UtilityClass;
-import org.java.training.structures.impl.BinaryTree;
-import org.java.training.structures.impl.HashTable;
-import org.java.training.structures.impl.SimpleHashMap;
+import org.java.training.structures.map.HashTable;
+import org.java.training.structures.map.SimpleHashMap;
+import org.java.training.structures.tree.BinaryTree;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package org.java.training.core.impl;
+package org.java.training.core;
 
 import lombok.experimental.UtilityClass;
 

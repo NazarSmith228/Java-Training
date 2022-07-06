@@ -1,4 +1,4 @@
-package org.java.training.structures.impl;
+package org.java.training.structures.util;
 
 import lombok.experimental.UtilityClass;
 
@@ -40,12 +40,6 @@ public class ArrayFormatter {
             }
             System.out.println();
         }
-    }
-
-    public static void demo() {
-        String[] input = {"1", "2", "3", "x", "5", "6", "a", "porosiatko", "c",
-                "fdsdfsdfsdfs", "sdfsdq", "12", "13", "14", "15", "16"};
-        printFormatted(input, 4);
     }
 }
 

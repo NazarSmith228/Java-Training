@@ -1,4 +1,4 @@
-package org.java.training.streams.impl.advanced;
+package org.java.training.streams.advanced;
 
 import lombok.experimental.UtilityClass;
 

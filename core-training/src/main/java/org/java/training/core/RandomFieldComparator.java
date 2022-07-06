@@ -1,15 +1,15 @@
-package org.java.training.core.impl;
+package org.java.training.core;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
-import lombok.experimental.UtilityClass;
-import org.java.training.model.users.User;
-import org.java.training.model.users.util.Users;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static java.util.Objects.isNull;
@@ -114,20 +114,6 @@ public class RandomFieldComparator<T> implements Comparator<T> {
             return isAscending()
                     ? field1.compareTo(field2)
                     : field2.compareTo(field1);
-        }
-    }
-
-    @UtilityClass
-    public static class Demo {
-
-        public void execute() {
-            RandomFieldComparator<User> comparator = new RandomFieldComparator<>(User.class);
-            System.out.println(comparator);
-
-            List<User> users = Users.createUsers();
-            users.stream()
-                    .sorted(comparator)
-                    .forEach(System.out::println);
         }
     }
 }

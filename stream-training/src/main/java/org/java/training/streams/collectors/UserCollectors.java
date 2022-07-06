@@ -1,4 +1,4 @@
-package org.java.training.streams.impl.collectors;
+package org.java.training.streams.collectors;
 
 import lombok.experimental.UtilityClass;
 import org.java.training.model.ComplexKey;

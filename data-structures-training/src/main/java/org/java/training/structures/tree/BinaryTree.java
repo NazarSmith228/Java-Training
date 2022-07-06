@@ -1,9 +1,8 @@
-package org.java.training.structures.impl;
+package org.java.training.structures.tree;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
-import lombok.experimental.UtilityClass;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -176,27 +175,6 @@ public class BinaryTree<T extends Comparable<? super T>> {
 
             prettyPrintNodes(sb, paddingForBoth, pointerLeft, node.right, node.left != null);
             prettyPrintNodes(sb, paddingForBoth, pointerRight, node.left, false);
-        }
-    }
-
-    @UtilityClass
-    public static class Demo {
-
-        public void execute() {
-            BinaryTree<Integer> tree = BinaryTree.of(10, 3, 11, 6, 4, 2, 8, 1, 9, -3, 0, -4, -5, -4, -6);
-
-            System.out.println("Constructed tree:");
-            System.out.println(tree.prettyPrintTree());
-
-            System.out.println("Size: " + tree.size());
-            System.out.println("Depth: " + tree.depth());
-
-            System.out.print("Traversal: ");
-            tree.traverseAscending(System.out::println);
-
-            System.out.printf("\nContains [%d] : %b\n", 11, tree.contains(11));
-            System.out.printf("Contains [%d] : %b\n", 0, tree.contains(0));
-            System.out.printf("Contains [%d] : %b\n", 5, tree.contains(5));
         }
     }
 }

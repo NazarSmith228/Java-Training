@@ -6,7 +6,11 @@ import org.java.training.web.socket.ssl.response.ResponseType;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
@@ -15,7 +19,10 @@ import static java.lang.String.format;
 import static java.lang.String.join;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.java.training.web.socket.constant.SocketConstants.*;
+import static org.java.training.web.socket.constant.SocketConstants.HTTPS;
+import static org.java.training.web.socket.constant.SocketConstants.HTTP_VERSION;
+import static org.java.training.web.socket.constant.SocketConstants.NEWLINE;
+import static org.java.training.web.socket.constant.SocketConstants.QUESTION_SIGN;
 
 public class SSLHelper {
 
@@ -120,6 +127,6 @@ public class SSLHelper {
     }
 
     private boolean isSecured(URL url) {
-        return url.toString().startsWith(HTTPS);
+        return url.getProtocol().equals(HTTPS);
     }
 }

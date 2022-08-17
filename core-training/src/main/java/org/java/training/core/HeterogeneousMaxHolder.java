@@ -3,7 +3,11 @@ package org.java.training.core;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Multi-type container that holds maximum values.

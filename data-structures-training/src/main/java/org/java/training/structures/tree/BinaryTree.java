@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayDeque;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
@@ -116,6 +117,21 @@ public class BinaryTree<T extends Comparable<? super T>> {
         }
     }
 
+    public void traverseAscendingIteratively(Consumer<T> consumer) {
+        TreeNode<T> current = root;
+        ArrayDeque<TreeNode<T>> stack = new ArrayDeque<>();
+        while (!stack.isEmpty() || current != null) {
+            if (current != null) {
+                stack.push(current);
+                current = current.left;
+            } else {
+                current = stack.pop();
+                consumer.accept(current.value);
+                current = current.right;
+            }
+        }
+    }
+
     public void traverseAscending(Consumer<T> nodeConsumer) {
         traverseAscending(root, nodeConsumer);
     }
@@ -123,7 +139,7 @@ public class BinaryTree<T extends Comparable<? super T>> {
     private void traverseAscending(TreeNode<T> root, Consumer<T> nodeConsumer) {
         if (root != null) {
             traverseAscending(root.left, nodeConsumer);
-            nodeConsumer.andThen((val) -> System.out.print("->")).accept(root.value);
+            nodeConsumer.andThen(val -> System.out.print("->")).accept(root.value);
             traverseAscending(root.right, nodeConsumer);
         }
     }

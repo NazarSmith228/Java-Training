@@ -39,7 +39,7 @@ public class RandomFieldComparator<T> implements Comparator<T> {
 
     Order order;
 
-    Field random;
+    Field randomField;
 
     public enum Order {
 
@@ -56,7 +56,7 @@ public class RandomFieldComparator<T> implements Comparator<T> {
         this.type = type;
         this.compareOnlyAccessibleFields = compareOnlyAccessibleFields;
         this.order = order;
-        this.random = Optional.ofNullable(initRandom())
+        this.randomField = Optional.ofNullable(initRandom())
                 .orElseThrow(() -> new IllegalArgumentException("Unable to pick random field for comparison"));
     }
 
@@ -91,7 +91,7 @@ public class RandomFieldComparator<T> implements Comparator<T> {
     @Override
     public String toString() {
         return String.format("Random field comparator of class [%s] is comparing [%s] in %s order",
-                type.getSimpleName(), random.getName(), order.name());
+                type.getSimpleName(), randomField.getName(), order.name());
     }
 
     @Override
@@ -101,8 +101,8 @@ public class RandomFieldComparator<T> implements Comparator<T> {
         Objects.requireNonNull(o1, "1st object is null - cannot compare");
         Objects.requireNonNull(o2, "2nd object is null - cannot compare");
 
-        Comparable field1 = (Comparable) random.get(o1);
-        Comparable field2 = (Comparable) random.get(o2);
+        Comparable field1 = (Comparable) randomField.get(o1);
+        Comparable field2 = (Comparable) randomField.get(o2);
 
         if (allNull(field1, field2)) {
             return 0;

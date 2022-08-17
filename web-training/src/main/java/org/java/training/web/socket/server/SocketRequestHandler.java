@@ -16,11 +16,18 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.UnaryOperator;
 
-import static org.apache.commons.lang3.StringUtils.*;
-import static org.java.training.web.socket.constant.SocketConstants.*;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static org.apache.commons.lang3.StringUtils.SPACE;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.java.training.web.socket.constant.SocketConstants.BACKSLASH;
+import static org.java.training.web.socket.constant.SocketConstants.EQUAL_SIGN;
+import static org.java.training.web.socket.constant.SocketConstants.HTTP_VERSION;
+import static org.java.training.web.socket.constant.SocketConstants.QUESTION_SIGN;
+import static org.java.training.web.socket.constant.SocketConstants.SEMICOLON;
 
 @NoArgsConstructor(staticName = "newInstance")
 public class SocketRequestHandler {
+
     private static final Set<String> AVAILABLE_METHODS;
     private static final Set<String> AVAILABLE_ENDPOINTS;
     private static final Map<String, String> ACCEPTABLE_HEADERS;

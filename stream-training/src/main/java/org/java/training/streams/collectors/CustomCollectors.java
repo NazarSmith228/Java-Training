@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Stack;
 import java.util.function.Function;
 import java.util.stream.Collector;
 
@@ -41,6 +42,18 @@ public class CustomCollectors {
                     return m1;
                 }
         );
+    }
+
+    private static <T> Collector<T, ?, Stack<T>> toStack() {
+        return Collector.of(
+                Stack::new,
+                Stack::push,
+                (stack1, stack2) -> {
+                    stack2.forEach(stack1::push);
+                    return stack1;
+                }
+        );
+
     }
 
     @SuppressWarnings("unchecked")
@@ -83,9 +96,13 @@ public class CustomCollectors {
 
     public <T> Collector<T, ?, Integer> toTotalHashCode() {
         return Collector.of(
-                () -> 0,
-                (currHash, el) -> currHash += el.hashCode(),
-                Integer::sum
+                () -> new int[1],
+                (arr, el) -> arr[0] += el.hashCode(),
+                (arr1, arr2) -> {
+                    arr1[0] += arr2[0];
+                    return arr1;
+                },
+                arr -> arr[0]
         );
     }
 }

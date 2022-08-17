@@ -11,7 +11,7 @@
     <modules>
         <module>concurrency-training</module>
         <module>core-training</module>
-        <module>common</module>
+        <module>model</module>
         <module>data-structures-training</module>
         <module>stream-training</module>
         <module>web-training</module>

@@ -9,13 +9,13 @@ import java.sql.Connection;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class CustomPooledDatasource extends PGSimpleDataSource {
+public class PGSimplePooledDataSource extends PGSimpleDataSource {
 
     private final Queue<Connection> connectionPool;
 
     private final int poolSize;
 
-    public CustomPooledDatasource(String url, String user, String password, int poolSize) {
+    public PGSimplePooledDataSource(String url, String user, String password, int poolSize) {
         setUrl(url);
         setUser(user);
         setPassword(password);
